@@ -6,4 +6,7 @@ abstract interface class CryptosMarketInterface {
   Future<BaseResponse<CryptoDetailsResponseDto>> getCryptoDetails(
     String cryptoId,
   );
+  Future<BaseResponse<CryptoMarketChartResponseDto>> getCryptoMarketChart(
+    String cryptoId,
+  );
 }

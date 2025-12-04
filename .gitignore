@@ -49,3 +49,5 @@ pubspec.lock
 
 *.g.dart
 *.freezed.dart
+
+devtools_options.yaml

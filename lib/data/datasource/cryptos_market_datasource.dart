@@ -32,4 +32,18 @@ class CryptosMarketDatasource implements CryptosMarketInterface {
       return CryptoDetailsResponseDto.fromJson(data);
     });
   }
+
+  @override
+  Future<BaseResponse<CryptoMarketChartResponseDto>> getCryptoMarketChart(
+    String cryptoId,
+  ) {
+    return safeApiCall(() async {
+      final Response<dynamic> cryptoResponse = await dioClient.get(
+        '/coins/$cryptoId/market_chart',
+        queryParameters: <String, dynamic>{'vs_currency': 'usd', 'days': 7},
+      );
+      final dynamic data = cryptoResponse.data;
+      return CryptoMarketChartResponseDto.fromJson(data);
+    });
+  }
 }

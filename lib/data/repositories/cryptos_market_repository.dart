@@ -16,4 +16,11 @@ class CryptosMarketRepository implements CryptosMarketInterface {
   ) async {
     return await cryptoRemoteDataSource.getCryptoDetails(cryptoId);
   }
+
+  @override
+  Future<BaseResponse<CryptoMarketChartResponseDto>> getCryptoMarketChart(
+    String cryptoId,
+  ) async {
+    return await cryptoRemoteDataSource.getCryptoMarketChart(cryptoId);
+  }
 }

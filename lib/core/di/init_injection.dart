@@ -9,4 +9,6 @@ Future<void> initInjection() async {
   getIt.registerLazySingleton<Dio>(DioClient.create);
   setupCryptosMarket();
   setupCryptoDetails();
+  setupCryptoMarketChart();
+  setupCryptoFavorite();
 }

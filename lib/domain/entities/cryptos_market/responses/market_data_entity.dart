@@ -18,6 +18,8 @@ class MarketDataEntity extends MarketData {
     required this.low24h,
     required this.marketCap,
     required this.totalVolume,
+    required super.priceChangePercentage24h,
+    required super.priceChangePercentage7d,
   }) : super(
          currentPrice: currentPrice,
          hight24h: hight24h,
@@ -33,6 +35,8 @@ class MarketDataEntity extends MarketData {
       low24h: low24h.toDataModel(),
       marketCap: marketCap.toDataModel(),
       totalVolume: totalVolume.toDataModel(),
+      priceChangePercentage24h: priceChangePercentage24h,
+      priceChangePercentage7d: priceChangePercentage7d,
     );
   }
 
@@ -43,6 +47,8 @@ class MarketDataEntity extends MarketData {
       low24h: Low24HEntity.fromDataModel(dataModel.low24h),
       marketCap: MarketCapEntity.fromDataModel(dataModel.marketCap),
       totalVolume: TotalVolumeEntity.fromDataModel(dataModel.totalVolume),
+      priceChangePercentage24h: dataModel.priceChangePercentage24h,
+      priceChangePercentage7d: dataModel.priceChangePercentage7d,
     );
   }
 }

@@ -7,6 +7,9 @@ abstract interface class CryptosMarketUseCaseInterface {
   Future<BaseResponse<CryptoDetailsResponseEntity>> getCryptoDetails(
     String cryptoId,
   );
+  Future<BaseResponse<CryptoMarketChartResponseEntity>> getCryptoMarketChart(
+    String cryptoId,
+  );
 }
 
 class CryptosMarketUseCase implements CryptosMarketUseCaseInterface {
@@ -44,6 +47,23 @@ class CryptosMarketUseCase implements CryptosMarketUseCaseInterface {
       );
     } else {
       return BaseResponse<CryptoDetailsResponseEntity>.failure(
+        responseDto.error,
+      );
+    }
+  }
+
+  @override
+  Future<BaseResponse<CryptoMarketChartResponseEntity>> getCryptoMarketChart(
+    String cryptoId,
+  ) async {
+    final BaseResponse<CryptoMarketChartResponseDto> responseDto =
+        await cryptosMarketRepository.getCryptoMarketChart(cryptoId);
+    if (responseDto.isSuccess) {
+      return BaseResponse<CryptoMarketChartResponseEntity>.success(
+        CryptoMarketChartResponseEntity.fromDataModel(responseDto.data!),
+      );
+    } else {
+      return BaseResponse<CryptoMarketChartResponseEntity>.failure(
         responseDto.error,
       );
     }

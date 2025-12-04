@@ -8,6 +8,9 @@ class CryptoDetailsResponseEntity extends CryptoDetailsResponseDto {
   @override
   final MarketDataEntity marketData;
 
+  @override
+  final ImageCryptoEntity image;
+
   const CryptoDetailsResponseEntity({
     required super.id,
     required super.symbol,
@@ -15,8 +18,9 @@ class CryptoDetailsResponseEntity extends CryptoDetailsResponseDto {
     required this.description,
     required super.webSlug,
     required this.marketData,
+    required this.image,
     super.assetPlatformId,
-  }) : super(description: description, marketData: marketData);
+  }) : super(description: description, marketData: marketData, image: image);
 
   CryptoDetailsResponseDto toDataModel() {
     return CryptoDetailsResponseDto(
@@ -27,6 +31,7 @@ class CryptoDetailsResponseEntity extends CryptoDetailsResponseDto {
       webSlug: super.webSlug,
       marketData: marketData.toDataModel(),
       assetPlatformId: super.assetPlatformId,
+      image: image.toDataModel(),
     );
   }
 
@@ -41,6 +46,7 @@ class CryptoDetailsResponseEntity extends CryptoDetailsResponseDto {
       webSlug: dataModel.webSlug,
       assetPlatformId: dataModel.assetPlatformId,
       marketData: MarketDataEntity.fromDataModel(dataModel.marketData),
+      image: ImageCryptoEntity.fromDataModel(dataModel.image),
     );
   }
 }
@@ -54,5 +60,29 @@ class DescriptionEntity extends Description {
 
   factory DescriptionEntity.fromDataModel(Description dataModel) {
     return DescriptionEntity(en: dataModel.en, de: dataModel.de);
+  }
+}
+
+class ImageCryptoEntity extends ImageCrypto {
+  const ImageCryptoEntity({
+    required super.large,
+    required super.small,
+    required super.thumb,
+  });
+
+  ImageCrypto toDataModel() {
+    return ImageCrypto(
+      large: super.large,
+      small: super.small,
+      thumb: super.thumb,
+    );
+  }
+
+  factory ImageCryptoEntity.fromDataModel(ImageCrypto dataModel) {
+    return ImageCryptoEntity(
+      large: dataModel.large,
+      small: dataModel.small,
+      thumb: dataModel.thumb,
+    );
   }
 }

@@ -21,12 +21,20 @@ class MarketData {
   @JsonKey(name: 'total_volume')
   final TotalVolume totalVolume;
 
+  @JsonKey(name: 'price_change_percentage_24h')
+  final double priceChangePercentage24h;
+
+  @JsonKey(name: 'price_change_percentage_7d')
+  final double priceChangePercentage7d;
+
   const MarketData({
     required this.currentPrice,
     required this.hight24h,
     required this.low24h,
     required this.marketCap,
     required this.totalVolume,
+    required this.priceChangePercentage24h,
+    required this.priceChangePercentage7d,
   });
 
   factory MarketData.fromJson(Map<String, dynamic> json) =>

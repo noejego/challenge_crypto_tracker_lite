@@ -21,6 +21,8 @@ class CryptoDetailsResponseDto {
   @JsonKey(name: 'market_data')
   final MarketData marketData;
 
+  final ImageCrypto image;
+
   const CryptoDetailsResponseDto({
     required this.id,
     required this.symbol,
@@ -28,6 +30,7 @@ class CryptoDetailsResponseDto {
     required this.description,
     required this.webSlug,
     required this.marketData,
+    required this.image,
     this.assetPlatformId,
   });
 
@@ -48,4 +51,22 @@ class Description {
       _$DescriptionFromJson(json);
 
   Map<String, dynamic> toJson() => _$DescriptionToJson(this);
+}
+
+@immutable
+@JsonSerializable()
+class ImageCrypto {
+  final String thumb;
+  final String small;
+  final String large;
+  const ImageCrypto({
+    required this.large,
+    required this.small,
+    required this.thumb,
+  });
+
+  factory ImageCrypto.fromJson(Map<String, dynamic> json) =>
+      _$ImageCryptoFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ImageCryptoToJson(this);
 }
