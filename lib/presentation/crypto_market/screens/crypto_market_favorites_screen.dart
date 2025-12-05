@@ -5,14 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-class CryptoMarketScreen extends StatefulWidget {
-  const CryptoMarketScreen({super.key});
+class CryptoMarketFavoritesScreen extends StatefulWidget {
+  const CryptoMarketFavoritesScreen({super.key});
 
   @override
-  State<CryptoMarketScreen> createState() => _CryptoMarketScreenState();
+  State<CryptoMarketFavoritesScreen> createState() =>
+      _CryptoMarketFavoritesScreenState();
 }
 
-class _CryptoMarketScreenState extends State<CryptoMarketScreen>
+class _CryptoMarketFavoritesScreenState
+    extends State<CryptoMarketFavoritesScreen>
     with WidgetsBindingObserver {
   late CryptoMarketBloc bloc;
 
@@ -44,7 +46,7 @@ class _CryptoMarketScreenState extends State<CryptoMarketScreen>
         return state.maybeWhen(
           initial: () => const SizedBox.shrink(),
           loading: () => const Center(child: CircularProgressIndicator()),
-          loaded: (List<CryptoMarketResponseEntity> cryptos) {
+          loadedFavorites: (List<CryptoMarketResponseEntity> cryptos) {
             return ListView.separated(
               itemCount: cryptos.length,
               separatorBuilder: (_, _) =>

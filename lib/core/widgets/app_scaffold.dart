@@ -2,7 +2,7 @@ import 'package:challenge_crypto_tracker_lite/core/core.dart';
 import 'package:flutter/material.dart';
 
 class AppScaffold extends StatelessWidget {
-  final String title;
+  final Widget title;
   final Widget body;
   final bool showMenuIcon;
   final bool showFavoriteIcon;
@@ -23,18 +23,21 @@ class AppScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
+      drawer: showMenuIcon ? const CustomSideMenu() : null,
       appBar: AppBar(
         backgroundColor: AppColors.surface,
         foregroundColor: AppColors.onSurface,
         elevation: 0,
         surfaceTintColor: Colors.transparent,
         centerTitle: true,
-        title: Text(
-          title,
-          style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
-        ),
+        title: title,
         leading: showMenuIcon
-            ? IconButton(icon: const Icon(Icons.menu), onPressed: onMenuPressed)
+            ? Builder(
+                builder: (BuildContext ctx) => IconButton(
+                  icon: const Icon(Icons.menu),
+                  onPressed: () => Scaffold.of(ctx).openDrawer(),
+                ),
+              )
             : null,
         actions: showFavoriteIcon
             ? <Widget>[

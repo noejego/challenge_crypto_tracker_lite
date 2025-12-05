@@ -16,7 +16,7 @@ class CryptoRowWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double priceChange = crypto.priceChangePercentage24h;
+    final double priceChange = crypto.priceChangePercentage24h ?? 0;
     final Color priceChangeColor = priceChange >= 0
         ? AppColors.success
         : AppColors.error;
@@ -66,7 +66,7 @@ class CryptoRowWidget extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Text(
-                      '\$${crypto.currentPrice.toStringAsFixed(2)}',
+                      '\$${crypto.currentPrice?.toStringAsFixed(2) ?? '0:00'}',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: getFavoriteColor(isFavorite),

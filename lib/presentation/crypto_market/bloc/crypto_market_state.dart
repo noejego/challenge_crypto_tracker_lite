@@ -10,5 +10,8 @@ class CryptoMarketState with _$CryptoMarketState {
   const factory CryptoMarketState.loaded(
     List<CryptoMarketResponseEntity> cryptos,
   ) = _Loaded;
+  const factory CryptoMarketState.loadedFavorites(
+    List<CryptoMarketResponseEntity> cryptos,
+  ) = _LoadedFavorites;
   const factory CryptoMarketState.error(String message) = _Error;
 }

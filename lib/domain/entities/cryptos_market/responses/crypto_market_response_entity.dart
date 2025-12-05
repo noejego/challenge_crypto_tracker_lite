@@ -1,36 +1,33 @@
 import 'package:challenge_crypto_tracker_lite/data/data.dart';
 
 class CryptoMarketResponseEntity extends CryptoMarketResponseDto {
-  final bool isFavorite;
-
   const CryptoMarketResponseEntity({
     required super.id,
     required super.symbol,
     required super.name,
     required super.image,
-    required super.currentPrice,
-    required super.marketCap,
-    required super.marketCapRank,
-    required super.totalVolume,
-    required super.high24h,
-    required super.low24h,
-    required super.priceChangePercentage24h,
-    required super.marketCapChange24h,
-    required super.marketCapChangePercentage24h,
-    required super.circulatingSupply,
-    required super.ath,
-    required super.athChangePercentage,
-    required super.athDate,
-    required super.atl,
-    required super.atlChangePercentage,
-    required super.atlDate,
-    required super.lastUpdated,
+    super.currentPrice,
+    super.marketCap,
+    super.marketCapRank,
+    super.totalVolume,
+    super.high24h,
+    super.low24h,
+    super.priceChangePercentage24h,
+    super.marketCapChange24h,
+    super.marketCapChangePercentage24h,
+    super.circulatingSupply,
+    super.ath,
+    super.athChangePercentage,
+    super.athDate,
+    super.atl,
+    super.atlChangePercentage,
+    super.atlDate,
+    super.lastUpdated,
     super.fullyDilutedValuation,
     super.priceChange24h,
     super.totalSupply,
     super.maxSupply,
     super.roi,
-    this.isFavorite = false,
   });
 
   CryptoMarketResponseDto toDataModel() {
@@ -95,7 +92,6 @@ class CryptoMarketResponseEntity extends CryptoMarketResponseDto {
       atlDate: dataModel.atlDate,
       lastUpdated: dataModel.lastUpdated,
       roi: dataModel.roi,
-      isFavorite: isFavorite,
     );
   }
 }

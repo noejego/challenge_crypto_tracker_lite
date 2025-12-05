@@ -5,4 +5,7 @@ part 'crypto_market_event.freezed.dart';
 @freezed
 class CryptoMarketEvent with _$CryptoMarketEvent {
   const factory CryptoMarketEvent.getCryptosMarket() = _LoadCryptos;
+  const factory CryptoMarketEvent.getCryptosMarketFavorites(
+    List<String> favoriteIds,
+  ) = _LoadCryptosFavorites;
 }

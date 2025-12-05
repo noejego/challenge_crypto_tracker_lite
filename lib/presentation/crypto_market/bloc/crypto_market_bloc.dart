@@ -13,7 +13,12 @@ class CryptoMarketBloc extends Bloc<CryptoMarketEvent, CryptoMarketState> {
       CryptoMarketEvent event,
       Emitter<CryptoMarketState> emit,
     ) async {
-      await event.maybeWhen(getCryptosMarket: () => _load(emit), orElse: () {});
+      await event.maybeWhen(
+        getCryptosMarket: () => _load(emit),
+        getCryptosMarketFavorites: (List<String> favoriteIds) =>
+            _loadFavorites(emit, favoriteIds),
+        orElse: () {},
+      );
     });
   }
 
@@ -40,6 +45,38 @@ class CryptoMarketBloc extends Bloc<CryptoMarketEvent, CryptoMarketState> {
       emit(CryptoMarketState.loaded(result.data!));
     } else {
       emit(CryptoMarketState.error(result.error!.message));
+    }
+  }
+
+  Future<void> _loadFavorites(
+    Emitter<CryptoMarketState> emit,
+    List<String> favoriteIds,
+  ) async {
+    emit(const CryptoMarketState.loading());
+
+    if (_cache != null) {
+      final List<CryptoMarketResponseEntity> favorites = _cache!.data
+          .where(
+            (CryptoMarketResponseEntity crypto) =>
+                favoriteIds.contains(crypto.id),
+          )
+          .toList();
+
+      emit(CryptoMarketState.loadedFavorites(favorites));
+      return;
+    }
+
+    await _load(emit);
+
+    if (_cache != null) {
+      final List<CryptoMarketResponseEntity> favorites = _cache!.data
+          .where(
+            (CryptoMarketResponseEntity crypto) =>
+                favoriteIds.contains(crypto.id),
+          )
+          .toList();
+
+      emit(CryptoMarketState.loadedFavorites(favorites));
     }
   }
 }
